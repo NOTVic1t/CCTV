@@ -1,0 +1,3725 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATI-CCTV — Solusi Keamanan Terpercaya</title>
+<meta name="description" content="ATI-CCTV solusi CCTV profesional untuk rumah, toko, kantor & gudang. Produk original, instalasi profesional, garansi resmi. Melayani Jabodetabek & sekitarnya." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  window.tailwind = window.tailwind || {};
+  window.tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            red:    '#CC0000',
+            redlit: '#FF1A1A',
+            reddark:'#990000',
+            black:  '#0A0A0A',
+            dark:   '#111111',
+            card:   '#161616',
+            border: '#2A2A2A',
+            muted:  '#888888',
+            silver: '#D0D0D0',
+            white:  '#F5F5F5',
+          }
+        },
+        fontFamily: {
+          display: ['Oswald', 'sans-serif'],
+          body:    ['Barlow', 'sans-serif'],
+          cond:    ['Barlow Condensed', 'sans-serif'],
+        },
+        boxShadow: {
+          'red-glow':  '0 0 24px rgba(204,0,0,0.35)',
+          'red-glow-lg':'0 0 48px rgba(204,0,0,0.25)',
+          'card':      '0 2px 24px rgba(0,0,0,0.6)',
+        }
+      }
+    }
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0A0A0A;
+    color: #F5F5F5;
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #111; }
+  ::-webkit-scrollbar-thumb { background: #CC0000; border-radius: 2px; }
+
+  /* ── Noise texture overlay ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── Red diagonal accent line ── */
+  .red-slash {
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, #CC0000, transparent);
+    border-radius: 2px;
+  }
+
+  /* ── Gradient overlays ── */
+  .hero-gradient {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a0505 50%, #0A0A0A 100%);
+  }
+  .section-gradient {
+    background: linear-gradient(180deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%);
+  }
+
+  /* ── Red glow line ── */
+  .glow-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #CC0000, transparent);
+    box-shadow: 0 0 12px rgba(204,0,0,0.6);
+  }
+  .glow-line-sm {
+    height: 1px;
+    background: linear-gradient(90deg, #CC0000, transparent);
+    box-shadow: 0 0 8px rgba(204,0,0,0.4);
+  }
+
+  /* ── Hexagon grid bg ── */
+  .hex-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 17.5 L55 42.5 L30 55 L5 42.5 L5 17.5 Z' fill='none' stroke='%23CC0000' stroke-width='0.3' opacity='0.12'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(204,0,0,0.4); }
+    50%       { box-shadow: 0 0 0 10px rgba(204,0,0,0); }
+  }
+  @keyframes scanline {
+    0%   { top: -4px; }
+    100% { top: 100%; }
+  }
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  .animate-fadeup  { animation: fadeUp 0.7s ease both; }
+  .animate-fadein  { animation: fadeIn 0.6s ease both; }
+  .animate-slide   { animation: slideRight 0.6s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  .float-anim { animation: float 4s ease-in-out infinite; }
+  .blink-anim { animation: blink 1.5s ease-in-out infinite; }
+  .pulse-btn  { animation: pulse-red 2s infinite; }
+
+  /* ── Navbar ── */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(204,0,0,0.15);
+    transition: all 0.3s ease;
+  }
+  .navbar.scrolled {
+    background: rgba(10,10,10,0.98);
+    border-bottom-color: rgba(204,0,0,0.3);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .nav-link {
+    color: #aaa;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute; left: 0; bottom: -4px; width: 0; height: 2px;
+    background: #CC0000;
+    transition: width 0.25s ease;
+    border-radius: 1px;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { width: 100%; }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #CC0000;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover {
+    background: #ff1a1a;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(204,0,0,0.4);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: #F5F5F5;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: #CC0000;
+    background: rgba(204,0,0,0.08);
+    transform: translateY(-1px);
+  }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-wa:hover { background: #1da851; transform: translateY(-1px); }
+
+  /* ══════════════════════════════════════
+     PRODUCT CARDS — Task 3 revision
+  ══════════════════════════════════════ */
+
+  /* ── Shell ── */
+  .product-card {
+    background: #131313;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  }
+  .product-card:hover {
+    border-color: rgba(204,0,0,0.5);
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 0 1px rgba(204,0,0,0.12),
+      0 16px 40px rgba(0,0,0,0.55),
+      0 6px 20px rgba(204,0,0,0.1);
+  }
+
+  /* Top accent — scaleX reveal */
+  .product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #880000, #CC0000, #ff5555);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.32s ease;
+    z-index: 3;
+  }
+  .product-card:hover::before { transform: scaleX(1); }
+
+  /* ── Image zone ──
+     3:2 ratio — compact, product-catalogue standard
+     Taller than 16:10 → better on mobile single-column
+  */
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  /* Dot-grid texture */
+  .img-placeholder::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle, rgba(204,0,0,0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+  /* Shimmer */
+  .img-placeholder::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
+    animation: shimmer 3.2s infinite;
+  }
+  @keyframes shimmer { to { left: 160%; } }
+
+  /* ── Body ── */
+  .pc-body {
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0;
+  }
+
+  /* ── Row 1: brand tag + stock ── */
+  .pc-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .pc-type {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #CC0000;
+    background: rgba(204,0,0,0.07);
+    border: 1px solid rgba(204,0,0,0.14);
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .pc-stock {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .pc-stock-ready {
+    color: #4ade80;
+    background: rgba(74,222,128,0.07);
+    border: 1px solid rgba(74,222,128,0.18);
+  }
+  .pc-stock-empty {
+    color: #fb923c;
+    background: rgba(251,146,60,0.07);
+    border: 1px solid rgba(251,146,60,0.18);
+  }
+
+  /* ── Row 2: product name ── */
+  .pc-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: #e8e8e8;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .product-card:hover .pc-name { color: #fff; }
+
+  /* ── Row 3: features ── */
+  .pc-features {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 0;
+    flex: 1;                  /* pushes price+CTA to bottom */
+    padding-bottom: 12px;
+  }
+  .pc-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.77rem;
+    color: #686868;
+    line-height: 1.35;
+  }
+  .pc-feat-dot {
+    width: 4px; height: 4px;
+    min-width: 4px;
+    background: rgba(204,0,0,0.6);
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* ── Row 4: price ── */
+  .pc-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 10px 0 12px;
+    border-top: 1px solid #1c1c1c;
+  }
+  .pc-price-main {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #CC0000;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .pc-price-orig {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.76rem;
+    color: #3a3a3a;
+    text-decoration: line-through;
+  }
+  .pc-disc {
+    margin-left: auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    background: #990000;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── Badge (on image) ── */
+  .pc-badge-img {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    z-index: 2;
+  }
+
+  /* ── Row 5: CTA ──
+     Full-width order button is the primary action.
+     Detail is secondary — text-link style, less visual weight.
+  */
+  .pc-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .pc-btn-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #CC0000;
+    border: none;
+    border-radius: 5px;
+    padding: 11px 16px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
+    width: 100%;
+  }
+  .pc-btn-order:hover {
+    background: #e30000;
+    box-shadow: 0 6px 20px rgba(204,0,0,0.32);
+    transform: translateY(-1px);
+  }
+  .pc-btn-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555;
+    background: transparent;
+    border: none;
+    padding: 4px 0;
+    text-decoration: none;
+    transition: color 0.18s;
+    cursor: pointer;
+    width: 100%;
+  }
+  .pc-btn-detail:hover { color: #999; }
+  .pc-btn-detail svg { opacity: 0.5; }
+  .pc-btn-detail:hover svg { opacity: 0.8; }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .pc-body         { padding: 14px 14px 12px; }
+    .pc-name         { font-size: 0.96rem; }
+    .pc-price-main   { font-size: 1.18rem; }
+    .pc-feat         { font-size: 0.73rem; }
+    .pc-btn-order    { font-size: 0.8rem; padding: 12px 16px; }
+    .pc-btn-detail   { font-size: 0.68rem; }
+  }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .badge-red   { background: #CC0000; color: #fff; }
+  .badge-green { background: #16a34a; color: #fff; }
+  .badge-orange{ background: #ea580c; color: #fff; }
+  .badge-blue  { background: #1d4ed8; color: #fff; }
+
+  /* ── Trust bar ── */
+  .trust-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; text-align: center;
+    padding: 20px 16px;
+    border-right: 1px solid #2A2A2A;
+    transition: background 0.2s;
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-item:hover { background: rgba(204,0,0,0.04); }
+
+  /* ── Ticker ── */
+  .ticker-wrap { overflow: hidden; }
+  .ticker-inner {
+    display: flex; width: max-content;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-inner:hover { animation-play-state: paused; }
+
+  /* ── Section label ── */
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #CC0000;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: #CC0000;
+    border-radius: 1px;
+  }
+
+  /* ── Category pill ── */
+  .cat-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    border-radius: 40px;
+    padding: 8px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-pill:hover, .cat-pill.active {
+    background: #CC0000;
+    border-color: #CC0000;
+    color: #fff;
+  }
+
+  /* ── Package card ── */
+  .pkg-card {
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .pkg-card.featured {
+    border-color: #CC0000;
+    background: linear-gradient(135deg, #1a0505, #161616);
+  }
+  .pkg-card:hover {
+    border-color: #CC0000;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(204,0,0,0.2);
+  }
+  .pkg-card .corner-accent {
+    position: absolute; top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 48px 48px 0;
+    border-color: transparent #CC0000 transparent transparent;
+  }
+
+  /* ── Testimonial card ── */
+  .testi-card {
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    border-radius: 8px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .testi-card:hover { border-color: rgba(204,0,0,0.4); }
+
+  /* ── Mobile menu ── */
+  #mobile-menu {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #0A0A0A;
+    z-index: 200;
+    padding: 80px 24px 40px;
+    flex-direction: column;
+    gap: 0;
+  }
+  #mobile-menu.open { display: flex; }
+  .mobile-nav-link {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid #1a1a1a;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .mobile-nav-link:hover { color: #fff; padding-left: 12px; }
+
+  /* ── WA Float ── */
+  .wa-float {
+    position: fixed; bottom: 24px; right: 20px;
+    z-index: 99;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse-red 2.5s infinite;
+  }
+  .wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+  }
+  /* Override pulse color for WA */
+  .wa-float { animation-name: pulse-wa; }
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50%       { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+  }
+
+  /* ── Hero camera scan ── */
+  .hero-cam-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-cam-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(204,0,0,0.7), transparent);
+    animation: scanline 3s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ── Stat counter ── */
+  .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-num span { color: #CC0000; }
+
+  /* ── Installation step ── */
+  .step-line {
+    position: absolute;
+    top: 24px;
+    left: calc(50% + 24px);
+    right: calc(-50% + 24px);
+    height: 1px;
+    background: linear-gradient(90deg, #CC0000, #2A2A2A);
+  }
+
+  /* ── Price strike ── */
+  .price-original {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    text-decoration: line-through;
+  }
+  .price-main {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #CC0000;
+  }
+
+  /* ── Discount badge ── */
+  .disc-badge {
+    background: #CC0000;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Feature check ── */
+  .feat-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.82rem;
+    color: #aaa;
+    font-family: 'Barlow', sans-serif;
+  }
+  .feat-dot {
+    width: 6px; height: 6px;
+    background: #CC0000;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Footer ── */
+  footer { background: #080808; border-top: 1px solid #1a1a1a; }
+  .footer-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .footer-link:hover { color: #CC0000; }
+
+  /* ── Responsive helpers ── */
+  @media (max-width: 768px) {
+    .stat-num { font-size: 1.8rem; }
+    .step-line { display: none; }
+  }
+
+  /* ── Active filter ── */
+  .filter-active {
+    background: #CC0000 !important;
+    border-color: #CC0000 !important;
+    color: #fff !important;
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  FLOATING WHATSAPP                         -->
+<!-- ═══════════════════════════════════════════ -->
+<a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20ingin%20konsultasi%20CCTV"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/>
+  </svg>
+</a>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  MOBILE MENU                               -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="mobile-menu">
+  <div style="position:absolute;top:20px;right:20px;">
+    <button id="close-menu" style="background:none;border:none;color:#fff;cursor:pointer;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <a href="#beranda"  class="mobile-nav-link" onclick="closeMobileMenu()">Beranda</a>
+  <a href="#produk"   class="mobile-nav-link" onclick="closeMobileMenu()">Produk</a>
+  <a href="#paket"    class="mobile-nav-link" onclick="closeMobileMenu()">Paket CCTV</a>
+  <a href="#layanan"  class="mobile-nav-link" onclick="closeMobileMenu()">Layanan</a>
+  <a href="#galeri"   class="mobile-nav-link" onclick="closeMobileMenu()">Galeri</a>
+  <a href="#kontak"   class="mobile-nav-link" onclick="closeMobileMenu()">Kontak</a>
+  <div style="margin-top:32px;">
+    <a href="https://wa.me/6281234567890" class="btn-wa" style="width:100%;justify-content:center;" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+      Konsultasi Gratis
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  NAVBAR                                    -->
+<!-- ═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;">
+
+    <!-- Logo -->
+    <a href="#beranda" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;">
+      <!-- SVG Logo Mark -->
+      <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,5 70,30 95,50 70,70 50,95 30,70 5,50 30,30" fill="#CC0000" opacity="0.15"/>
+        <polygon points="50,12 65,32 88,50 65,68 50,88 35,68 12,50 35,32" fill="none" stroke="#CC0000" stroke-width="3"/>
+        <polygon points="50,28 60,40 72,50 60,60 50,72 40,60 28,50 40,40" fill="#CC0000"/>
+        <polygon points="50,35 57,44 65,50 57,56 50,65 43,56 35,50 43,44" fill="#111"/>
+      </svg>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:0.04em;line-height:1;">
+          <span style="color:#D0D0D0;">ATI-</span><span style="color:#CC0000;">CCTV</span>
+        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.14em;color:#666;text-transform:uppercase;line-height:1;margin-top:2px;">
+          Solusi Keamanan Terpercaya
+        </div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div style="display:none;" class="md-flex" id="desktop-nav">
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#beranda" class="nav-link">Beranda</a>
+        <a href="#produk"  class="nav-link">Produk</a>
+        <a href="#paket"   class="nav-link">Paket CCTV</a>
+        <a href="#layanan" class="nav-link">Layanan</a>
+        <a href="#galeri"  class="nav-link">Galeri</a>
+        <a href="#kontak"  class="nav-link">Kontak</a>
+      </div>
+    </div>
+
+    <!-- CTA + Hamburger -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="https://wa.me/6281234567890" class="btn-wa" style="display:none;padding:9px 16px;font-size:0.78rem;" id="nav-wa-btn" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+        08xx-xxxx-xxxx
+      </a>
+      <button id="hamburger" style="background:none;border:none;color:#fff;cursor:pointer;padding:4px;" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Apply desktop styles via JS after load -->
+<style>
+  @media (min-width: 768px) {
+    #desktop-nav { display: flex !important; }
+    #nav-wa-btn  { display: flex !important; }
+    #hamburger   { display: none !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  TICKER BAR                                -->
+<!-- ═══════════════════════════════════════════ -->
+<div style="background:#CC0000;padding:7px 0;overflow:hidden;margin-top:64px;position:relative;z-index:10;">
+  <div class="ticker-wrap">
+    <div class="ticker-inner" id="ticker">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  HERO                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<style>
+  /* ── Hero-specific improvements ── */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0A0A0A 0%, #140303 55%, #0A0A0A 100%);
+  }
+
+  /* Deep red atmospheric glow behind content */
+  .hero-bg-glow {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 70%;
+    height: 120%;
+    background: radial-gradient(ellipse at 70% 40%, rgba(180,0,0,0.13) 0%, rgba(100,0,0,0.06) 45%, transparent 75%);
+    pointer-events: none;
+  }
+  .hero-bg-glow-left {
+    position: absolute;
+    bottom: 0;
+    left: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(204,0,0,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Diagonal red slash accent */
+  .hero-slash {
+    position: absolute;
+    top: 0; right: 28%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(204,0,0,0.25) 30%, rgba(204,0,0,0.12) 70%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Scanline overlay */
+  .hero-scanlines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.06) 3px,
+      rgba(0,0,0,0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grid layout */
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 72px 24px 96px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 52px;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr 1fr; gap: 64px; }
+  }
+
+  /* Live tag pill */
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(204,0,0,0.1);
+    border: 1px solid rgba(204,0,0,0.28);
+    border-radius: 40px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .hero-tag-dot {
+    width: 7px; height: 7px;
+    background: #CC0000;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: blink-dot 1.5s ease-in-out infinite;
+  }
+  .hero-tag-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #CC0000;
+  }
+
+  /* Headline */
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .hero-h1-line1 {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    color: #C0C0C0;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .hero-h1-line2 {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 8vw, 5.6rem);
+    color: #fff;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+  .hero-h1-line3 {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    color: #CC0000;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(204,0,0,0.35), 0 2px 0 rgba(0,0,0,0.4);
+  }
+  .hero-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+    color: #666;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hero-subtitle-sep {
+    width: 3px; height: 3px;
+    background: #CC0000;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* USP row */
+  .hero-usps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+  .hero-usp-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #2A2A2A;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    color: #999;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .hero-usp-item:hover { border-color: rgba(204,0,0,0.3); color: #ccc; }
+
+  /* CTA buttons */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+  .hero-btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-btn-wa::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: shimmer 2.8s infinite;
+  }
+  .hero-btn-wa:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(37,211,102,0.35);
+  }
+  .hero-btn-catalog {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #D0D0D0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 13px 24px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .hero-btn-catalog:hover {
+    border-color: #CC0000;
+    color: #fff;
+    background: rgba(204,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Stats strip */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 380px;
+    border: 1px solid #222;
+  }
+  .hero-stat-cell {
+    background: #111;
+    padding: 18px 12px;
+    text-align: center;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .hero-stat-cell:hover { background: #161616; }
+  .hero-stat-cell::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .hero-stat-cell:hover::after { background: #CC0000; }
+  .hero-stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-stat-num span { color: #CC0000; }
+  .hero-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    color: #555;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  /* Right: camera card */
+  .hero-cam-card {
+    background: linear-gradient(160deg, #181818 0%, #0f0f0f 100%);
+    border-radius: 14px;
+    border: 1px solid #252525;
+    padding: 24px;
+    box-shadow:
+      0 0 80px rgba(204,0,0,0.12),
+      0 32px 64px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-cam-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(204,0,0,0.4), transparent);
+  }
+  /* Scanline overlay on card */
+  .hero-cam-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255,255,255,0.006) 3px,
+      rgba(255,255,255,0.006) 4px
+    );
+    pointer-events: none;
+  }
+
+  .hero-cam-main {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1e1e1e, #161616);
+    border-radius: 8px;
+    border: 1px solid #2e2e2e;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+    min-height: 90px;
+  }
+  .hero-cam-main::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(204,0,0,0.3), transparent);
+  }
+  .hero-cam-sub {
+    background: linear-gradient(135deg, #1a1a1a, #141414);
+    border-radius: 8px;
+    border: 1px solid #252525;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .hero-cam-sub:hover { border-color: rgba(204,0,0,0.25); }
+
+  .hero-live-badge {
+    position: absolute;
+    top: 10px; left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(204,0,0,0.3);
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+  .hero-live-dot {
+    width: 5px; height: 5px;
+    background: #CC0000;
+    border-radius: 50%;
+    animation: blink-dot 1.2s ease-in-out infinite;
+  }
+  .hero-live-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.58rem;
+    color: #CC0000;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-brand-strip {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .hero-brand-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: #fff;
+    letter-spacing: 0.06em;
+  }
+  .hero-brand-name span { color: #CC0000; }
+  .hero-brand-sep { color: #2a2a2a; font-size: 0.7rem; }
+
+  /* Garansi badge */
+  .hero-garansi-badge {
+    position: absolute;
+    top: -12px; right: -12px;
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, #CC0000, #880000);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #0A0A0A;
+    box-shadow: 0 0 20px rgba(204,0,0,0.4);
+    z-index: 2;
+  }
+  .hero-garansi-badge-top {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    line-height: 1;
+  }
+  .hero-garansi-badge-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-garansi-badge-bot {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    line-height: 1;
+  }
+
+  /* Mobile: reduce hero bottom padding */
+  @media (max-width: 640px) {
+    .hero-inner { padding: 48px 20px 64px; gap: 40px; }
+    .hero-stats { max-width: 100%; }
+    .hero-ctas { flex-direction: column; }
+    .hero-btn-wa, .hero-btn-catalog { justify-content: center; width: 100%; }
+  }
+</style>
+
+<section id="beranda" class="hero-section hex-bg">
+
+  <!-- Atmospheric backgrounds -->
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="hero-bg-glow-left" aria-hidden="true"></div>
+  <div class="hero-slash" aria-hidden="true"></div>
+  <div class="hero-scanlines" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <!-- ── LEFT: Copy ── -->
+    <div>
+
+      <!-- Live tag -->
+      <div class="hero-tag anim-fadeup">
+        <span class="hero-tag-dot" aria-hidden="true"></span>
+        <span class="hero-tag-text">Keamanan Maksimal · Ketenangan Total</span>
+      </div>
+
+      <!-- Eyebrow + Headline -->
+      <div class="anim-fadeup delay-1">
+        <div class="hero-eyebrow">Solusi CCTV Terpercaya</div>
+        <h1 style="margin:0 0 0 0;line-height:1;">
+          <span class="hero-h1-line1">Pasang CCTV</span>
+          <span class="hero-h1-line2">Kualitas</span>
+          <span class="hero-h1-line3">Profesional</span>
+        </h1>
+      </div>
+
+      <!-- Subtitle locations -->
+      <div class="hero-subtitle anim-fadeup delay-2" aria-label="Melayani rumah, toko, kantor, dan gudang">
+        <span>Rumah</span>
+        <span class="hero-subtitle-sep" aria-hidden="true"></span>
+        <span>Toko</span>
+        <span class="hero-subtitle-sep" aria-hidden="true"></span>
+        <span>Kantor</span>
+        <span class="hero-subtitle-sep" aria-hidden="true"></span>
+        <span>Gudang</span>
+      </div>
+
+      <!-- USPs -->
+      <div class="hero-usps anim-fadeup delay-2">
+        <div class="hero-usp-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Produk Original
+        </div>
+        <div class="hero-usp-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Instalasi Rapi
+        </div>
+        <div class="hero-usp-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Harga Terbaik
+        </div>
+        <div class="hero-usp-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Garansi Resmi
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="hero-ctas anim-fadeup delay-3">
+        <a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20minta%20konsultasi%20gratis%20CCTV" class="hero-btn-wa" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          Konsultasi Gratis
+        </a>
+        <a href="#paket" class="hero-btn-catalog">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Lihat Paket CCTV
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero-stats anim-fadeup delay-4">
+        <div class="hero-stat-cell">
+          <div class="hero-stat-num">800<span>+</span></div>
+          <div class="hero-stat-label">Instalasi</div>
+        </div>
+        <div class="hero-stat-cell">
+          <div class="hero-stat-num">24<span>H</span></div>
+          <div class="hero-stat-label">Support</div>
+        </div>
+        <div class="hero-stat-cell">
+          <div class="hero-stat-num">2<span>Y</span></div>
+          <div class="hero-stat-label">Garansi</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── RIGHT: Camera card ── -->
+    <div class="anim-fadein delay-3" style="display:flex;justify-content:center;position:relative;">
+      <div class="hero-cam-wrap anim-float" style="max-width:460px;width:100%;position:relative;">
+
+        <!-- Garansi badge -->
+        <div class="hero-garansi-badge" aria-label="Garansi Resmi 2 Tahun">
+          <div class="hero-garansi-badge-top">Garansi</div>
+          <div class="hero-garansi-badge-num">2 Th</div>
+          <div class="hero-garansi-badge-bot">Resmi</div>
+        </div>
+
+        <div class="hero-cam-card">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1;">
+
+            <!-- Main camera display -->
+            <div class="hero-cam-main">
+              <div class="hero-live-badge" aria-label="Live feed">
+                <div class="hero-live-dot" aria-hidden="true"></div>
+                <span class="hero-live-text">LIVE</span>
+              </div>
+              <svg width="72" height="54" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="8" width="60" height="34" rx="7" fill="#222" stroke="#333" stroke-width="1.5"/>
+                <rect x="3" y="11" width="54" height="28" rx="5" fill="#161616"/>
+                <circle cx="30" cy="25" r="11" fill="#2a2a2a" stroke="#CC0000" stroke-width="1.5"/>
+                <circle cx="30" cy="25" r="6.5" fill="#111"/>
+                <circle cx="30" cy="25" r="3" fill="#080808"/>
+                <circle cx="27" cy="22" r="1.2" fill="rgba(255,255,255,0.15)"/>
+                <rect x="60" y="16" width="20" height="18" rx="4" fill="#222" stroke="#333" stroke-width="1"/>
+                <rect x="52" y="22" width="10" height="6" rx="2" fill="#1a1a1a"/>
+                <circle cx="68" cy="44" r="3.5" fill="#CC0000" opacity="0.85"/>
+              </svg>
+              <div>
+                <div style="font-family:'Oswald',sans-serif;font-size:0.9rem;color:#fff;font-weight:700;letter-spacing:0.04em;">HIKVISION</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;color:#888;letter-spacing:0.06em;margin-top:1px;">Smart Hybrid Light</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;color:#CC0000;font-weight:700;margin-top:6px;letter-spacing:0.1em;display:flex;align-items:center;gap:4px;">
+                  <span style="width:5px;height:5px;background:#CC0000;border-radius:50%;display:inline-block;" aria-hidden="true"></span>
+                  3K UHD · NIGHT VISION
+                </div>
+              </div>
+            </div>
+
+            <!-- Dome cam -->
+            <div class="hero-cam-sub">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 8px;display:block;" aria-hidden="true">
+                <circle cx="22" cy="22" r="19" fill="#1e1e1e" stroke="#333" stroke-width="1.5"/>
+                <path d="M7 29 Q22 9 37 29" fill="#161616" stroke="#CC0000" stroke-width="1.2"/>
+                <circle cx="22" cy="25" r="7" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
+                <circle cx="22" cy="25" r="3.5" fill="#111"/>
+              </svg>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.63rem;color:#666;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Dome Cam</div>
+            </div>
+
+            <!-- DVR -->
+            <div class="hero-cam-sub">
+              <svg width="50" height="28" viewBox="0 0 80 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 8px;display:block;" aria-hidden="true">
+                <rect x="1" y="6" width="78" height="32" rx="5" fill="#1e1e1e" stroke="#333" stroke-width="1.5"/>
+                <rect x="5" y="11" width="30" height="22" rx="2" fill="#111"/>
+                <circle cx="52" cy="17" r="2.5" fill="#CC0000" opacity="0.9"/>
+                <circle cx="60" cy="17" r="2.5" fill="#16a34a" opacity="0.9"/>
+                <rect x="47" y="25" width="26" height="3" rx="1" fill="#2a2a2a"/>
+                <rect x="47" y="31" width="16" height="3" rx="1" fill="#252525"/>
+              </svg>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.63rem;color:#666;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">DVR / NVR</div>
+            </div>
+
+          </div>
+
+          <!-- Brand strip -->
+          <div class="hero-brand-strip" style="position:relative;z-index:1;">
+            <span class="hero-brand-name">HIK<span>VISION</span></span>
+            <span class="hero-brand-sep">|</span>
+            <span style="font-family:'Oswald',sans-serif;font-weight:500;font-size:0.78rem;color:#555;letter-spacing:0.04em;">HiLook</span>
+            <span class="hero-brand-sep">|</span>
+            <span style="font-family:'Oswald',sans-serif;font-weight:500;font-size:0.78rem;color:#555;letter-spacing:0.04em;">EZVIZ</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom glow line -->
+  <div class="glow-line" style="position:absolute;bottom:0;left:0;right:0;" aria-hidden="true"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  TRUST BAR                                 -->
+<!-- ═══════════════════════════════════════════ -->
+<section style="background:#111;border-bottom:1px solid #1a1a1a;position:relative;z-index:5;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);" id="trust-grid">
+      <div class="trust-item">
+        <div style="color:#CC0000;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Produk Original</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">100% Berkualitas</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div style="color:#CC0000;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Support 24 Jam</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Siap Melayani Anda</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div style="color:#CC0000;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Instalasi Profesional</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Rapi & Bergaransi</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div style="color:#CC0000;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Garansi Resmi</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Aman & Terpercaya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 640px) {
+    #trust-grid { grid-template-columns: repeat(4,1fr) !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  PRODUCT CATALOG                           -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="produk" style="padding:72px 0;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <!-- Section header -->
+    <div class="reveal" style="margin-bottom:40px;">
+      <div class="section-label" style="margin-bottom:12px;">Katalog Produk</div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;">
+          Produk CCTV <span style="color:#CC0000;">Terlengkap</span>
+        </h2>
+        <a href="#kontak" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;text-decoration:none;display:flex;align-items:center;gap:6px;">
+          Lihat Semua →
+        </a>
+      </div>
+    </div>
+
+    <!-- Category filters -->
+    <div class="reveal" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;" id="cat-filters">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Product grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;" id="product-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  PROMO BANNER                              -->
+<!-- ═══════════════════════════════════════════ -->
+<section style="padding:0 0 72px;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+    <div class="reveal" style="background:linear-gradient(135deg,#1a0505 0%,#CC0000 50%,#990000 100%);border-radius:12px;padding:40px 32px;display:grid;gap:24px;align-items:center;position:relative;overflow:hidden;" id="promo-grid">
+      <!-- bg pattern -->
+      <div style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='white' opacity='0.05'/%3E%3C/svg%3E\");pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px;">Promo Bulan Ini</div>
+        <h3 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;line-height:1.1;color:#fff;margin-bottom:12px;">
+          Diskon Hingga <span style="font-size:clamp(2.4rem,6vw,3.6rem);">20%</span>
+        </h3>
+        <p style="font-family:'Barlow',sans-serif;color:rgba(255,255,255,0.8);font-size:0.9rem;margin-bottom:0;">
+          Gratis Instalasi · Free Setting · Garansi Resmi · Berlaku Area Jabodetabek
+        </p>
+      </div>
+      <div style="position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20mau%20tanya%20promo%20diskon%2020%25" class="btn-primary" style="background:#fff;color:#CC0000;" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          Klaim Promo
+        </a>
+        <a href="#paket" class="btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff;">Lihat Paket →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 640px) {
+    #promo-grid { grid-template-columns: 1fr auto !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  WHY CHOOSE US                             -->
+<!-- ═══════════════════════════════════════════ -->
+<style>
+  /* ── Why Choose Us — scoped ── */
+  .wcu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 540px) {
+    .wcu-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .wcu-grid { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  }
+
+  .wcu-card {
+    background: #131313;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    padding: 22px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .wcu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #880000, #CC0000);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+  }
+  .wcu-card:hover {
+    border-color: rgba(204,0,0,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(204,0,0,0.08);
+  }
+  .wcu-card:hover::before { transform: scaleX(1); }
+
+  .wcu-icon {
+    width: 48px; height: 48px;
+    background: rgba(204,0,0,0.07);
+    border: 1px solid rgba(204,0,0,0.14);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: #CC0000;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .wcu-card:hover .wcu-icon {
+    background: rgba(204,0,0,0.13);
+    border-color: rgba(204,0,0,0.28);
+  }
+
+  .wcu-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ccc;
+    line-height: 1.25;
+    transition: color 0.2s;
+  }
+  .wcu-card:hover .wcu-label { color: #fff; }
+
+  .wcu-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    color: #444;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 380px) {
+    .wcu-card { padding: 18px 10px 14px; }
+    .wcu-icon { width: 40px; height: 40px; border-radius: 8px; }
+    .wcu-label { font-size: 0.74rem; }
+  }
+</style>
+
+<section id="kenapa-kami" style="padding:72px 0;background:#0e0e0e;position:relative;overflow:hidden;">
+  <!-- Subtle red corner glow -->
+  <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(204,0,0,0.07) 0%,transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <!-- Header -->
+    <div class="reveal" style="text-align:center;margin-bottom:44px;">
+      <div class="section-label" style="margin-bottom:12px;justify-content:center;">Kenapa Pilih Kami</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:10px;">
+        Kenapa Pilih <span style="color:#CC0000;">ATI-CCTV?</span>
+      </h2>
+      <p style="font-family:'Barlow',sans-serif;color:#555;font-size:0.88rem;max-width:440px;margin:0 auto;line-height:1.6;">
+        Kami hadir dengan komitmen penuh untuk memberikan solusi keamanan terbaik, terpercaya, dan bergaransi.
+      </p>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="wcu-grid">
+
+      <!-- 1 — Teknisi Berpengalaman -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Teknisi Berpengalaman</div>
+          <div class="wcu-sub">Tim bersertifikat & terlatih</div>
+        </div>
+      </div>
+
+      <!-- 2 — Produk Original Bergaransi -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Produk Original Bergaransi</div>
+          <div class="wcu-sub">100% asli & garansi resmi</div>
+        </div>
+      </div>
+
+      <!-- 3 — Support Online Cepat -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Support Online Cepat</div>
+          <div class="wcu-sub">Respons 24 jam via WA</div>
+        </div>
+      </div>
+
+      <!-- 4 — Instalasi Rapi & Profesional -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Instalasi Rapi &amp; Profesional</div>
+          <div class="wcu-sub">Aman, teratur & bergaransi</div>
+        </div>
+      </div>
+
+      <!-- 5 — Survey Lokasi Gratis -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Survey Lokasi Gratis</div>
+          <div class="wcu-sub">Area Jabodetabek & sekitar</div>
+        </div>
+      </div>
+
+      <!-- 6 — Harga Transparan -->
+      <div class="wcu-card reveal">
+        <div class="wcu-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wcu-label">Harga Transparan</div>
+          <div class="wcu-sub">Tanpa biaya tersembunyi</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  PAKET CCTV                                -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="paket" style="padding:72px 0;background:#111;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:12px;justify-content:center;">Paket CCTV Terlaris</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:12px;">
+        Paket Lengkap <span style="color:#CC0000;">Siap Pasang</span>
+      </h2>
+      <p style="font-family:'Barlow',sans-serif;color:#666;font-size:0.9rem;max-width:480px;margin:0 auto;">
+        Termasuk kamera, DVR/NVR, kabel, connector, power supply & free instalasi untuk area Jabodetabek.
+      </p>
+    </div>
+
+    <!-- Package grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;" id="pkg-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  LAYANAN / SERVICES                        -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="layanan" style="padding:72px 0;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <div class="reveal" style="display:grid;gap:48px;align-items:center;" id="layanan-grid">
+      <!-- Left content -->
+      <div>
+        <div class="section-label" style="margin-bottom:12px;">Layanan Kami</div>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:20px;">
+          Instalasi CCTV <span style="color:#CC0000;">Rapi, Aman</span><br>& Terpercaya
+        </h2>
+        <p style="font-family:'Barlow',sans-serif;color:#888;line-height:1.7;margin-bottom:28px;font-size:0.9rem;">
+          Tim teknisi berpengalaman kami siap melakukan survey lokasi gratis, pemasangan sistem CCTV secara profesional, setting konfigurasi, hingga training penggunaan aplikasi monitoring.
+        </p>
+
+        <!-- Service points -->
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
+          <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:#161616;border:1px solid #2a2a2a;border-radius:6px;">
+            <div style="width:40px;height:40px;background:rgba(204,0,0,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#CC0000;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Survey Lokasi Gratis</div>
+              <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:#666;">Tim kami survey ke lokasi Anda tanpa biaya</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:#161616;border:1px solid #2a2a2a;border-radius:6px;">
+            <div style="width:40px;height:40px;background:rgba(204,0,0,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#CC0000;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Pemasangan Profesional</div>
+              <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:#666;">Instalasi rapi, aman, dan tersembunyi rapi</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:#161616;border:1px solid #2a2a2a;border-radius:6px;">
+            <div style="width:40px;height:40px;background:rgba(204,0,0,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#CC0000;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Setting Online & Akses HP</div>
+              <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:#666;">Pantau kamera dari mana saja via smartphone</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;background:#161616;border:1px solid #2a2a2a;border-radius:6px;">
+            <div style="width:40px;height:40px;background:rgba(204,0,0,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#CC0000;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Garansi Instalasi & Produk</div>
+              <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:#666;">Garansi pemasangan hingga 2 tahun</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20ingin%20free%20survey%20untuk%20pemasangan%20CCTV" class="btn-primary" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Request Free Survey
+        </a>
+      </div>
+
+      <!-- Right: service area visual -->
+      <div>
+        <div style="background:#161616;border:1px solid #2a2a2a;border-radius:12px;padding:28px;box-shadow:0 0 40px rgba(204,0,0,0.08);">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#666;margin-bottom:16px;">Area Layanan</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;" id="area-grid">
+            <!-- Filled by JS -->
+          </div>
+          <div class="glow-line" style="margin:16px 0;"></div>
+          <!-- Contact -->
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="color:#CC0000;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+              </div>
+              <div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">08xx-xxxx-xxxx</div>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Konsultasi & Pemesanan</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="color:#CC0000;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">08:00 – 21:00 WIB</div>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Jam Operasional</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="color:#CC0000;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#fff;">Lampung Selatan</div>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">Lokasi Toko</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    #layanan-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  SERVICE COVERAGE                          -->
+<!-- ═══════════════════════════════════════════ -->
+<style>
+  /* ── Service Coverage cards — scoped ── */
+  .svc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 480px) {
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .svc-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  }
+
+  .svc-card {
+    background: #131313;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    padding: 20px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .svc-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2px;
+    background: #CC0000;
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 0.3s ease;
+  }
+  .svc-card:hover {
+    border-color: rgba(204,0,0,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.4), 0 2px 8px rgba(204,0,0,0.07);
+  }
+  .svc-card:hover::after { transform: scaleY(1); }
+
+  .svc-icon-wrap {
+    width: 44px; height: 44px;
+    background: rgba(204,0,0,0.07);
+    border: 1px solid rgba(204,0,0,0.13);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: #CC0000;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .svc-card:hover .svc-icon-wrap {
+    background: rgba(204,0,0,0.12);
+    border-color: rgba(204,0,0,0.26);
+  }
+
+  .svc-content { flex: 1; min-width: 0; }
+
+  .svc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ddd;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .svc-card:hover .svc-title { color: #fff; }
+
+  .svc-desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.76rem;
+    color: #4a4a4a;
+    line-height: 1.45;
+  }
+
+  .svc-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #CC0000;
+    background: rgba(204,0,0,0.07);
+    border: 1px solid rgba(204,0,0,0.14);
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 380px) {
+    .svc-card { padding: 16px 14px; gap: 12px; }
+    .svc-icon-wrap { width: 38px; height: 38px; }
+    .svc-title { font-size: 0.82rem; }
+  }
+</style>
+
+<section id="layanan-cctv" style="padding:72px 0;background:#0a0a0a;position:relative;overflow:hidden;">
+  <!-- Corner accent -->
+  <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(204,0,0,0.06) 0%,transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <!-- Header -->
+    <div class="reveal" style="margin-bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="section-label" style="margin-bottom:12px;">Layanan ATI-CCTV</div>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;">
+          Semua Kebutuhan CCTV <span style="color:#CC0000;">Kami Tangani</span>
+        </h2>
+      </div>
+      <a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20ingin%20tanya%20tentang%20layanan%20CCTV"
+         style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:#CC0000;text-decoration:none;white-space:nowrap;"
+         target="_blank" rel="noopener">
+        Konsultasi Gratis →
+      </a>
+    </div>
+
+    <!-- Service cards grid -->
+    <div class="svc-grid">
+
+      <!-- 1 — Instalasi CCTV Rumah -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Instalasi CCTV Rumah</div>
+          <div class="svc-desc">Proteksi hunian Anda dengan sistem kamera tersembunyi rapi dan akses monitoring via HP.</div>
+          <span class="svc-tag">Mulai 4 Channel</span>
+        </div>
+      </div>
+
+      <!-- 2 — Instalasi CCTV Toko -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Instalasi CCTV Toko</div>
+          <div class="svc-desc">Pantau aktivitas toko, kasir, dan area masuk dari satu dashboard secara real-time.</div>
+          <span class="svc-tag">Hikvision / HiLook</span>
+        </div>
+      </div>
+
+      <!-- 3 — Instalasi CCTV Gudang -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Instalasi CCTV Gudang</div>
+          <div class="svc-desc">Sistem multi-kamera coverage luas untuk area penyimpanan dan loading dock.</div>
+          <span class="svc-tag">Hingga 16 Channel</span>
+        </div>
+      </div>
+
+      <!-- 4 — Instalasi CCTV Kantor -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Instalasi CCTV Kantor</div>
+          <div class="svc-desc">Keamanan area kerja, ruang server, lobi, dan parkiran dengan pemasangan profesional.</div>
+          <span class="svc-tag">IP Camera Ready</span>
+        </div>
+      </div>
+
+      <!-- 5 — Maintenance CCTV -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Maintenance CCTV</div>
+          <div class="svc-desc">Perawatan berkala, pembersihan lensa, pengecekan kabel, dan konfigurasi ulang sistem.</div>
+          <span class="svc-tag">Bergaransi Jangka Panjang</span>
+        </div>
+      </div>
+
+      <!-- 6 — Upgrade Sistem CCTV -->
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <div class="svc-content">
+          <div class="svc-title">Upgrade Sistem CCTV</div>
+          <div class="svc-desc">Migrasi dari sistem lama ke IP camera HD, penambahan channel, atau upgrade DVR/NVR.</div>
+          <span class="svc-tag">Full HD &amp; 4K Ready</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  GALERI INSTALASI                          -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="galeri" style="padding:72px 0;background:#111;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:12px;justify-content:center;">Galeri Pemasangan</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;">
+        Hasil <span style="color:#CC0000;">Instalasi</span> Kami
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;" id="galeri-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  TESTIMONIAL                               -->
+<!-- ═══════════════════════════════════════════ -->
+<section style="padding:72px 0;position:relative;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 20px;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:12px;justify-content:center;">Testimoni Pelanggan</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;letter-spacing:0.02em;">
+        Kepuasan Pelanggan <span style="color:#CC0000;">Prioritas Kami</span>
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;" id="testi-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  CTA SECTION                               -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="kontak" style="padding:72px 0;background:#111;position:relative;overflow:hidden;">
+  <!-- bg accent -->
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(204,0,0,0.04) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(204,0,0,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:800px;margin:0 auto;padding:0 20px;text-align:center;position:relative;z-index:1;">
+    <div class="reveal">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.3);border-radius:40px;padding:6px 14px;margin-bottom:20px;">
+        <span style="width:7px;height:7px;background:#25D366;border-radius:50%;display:inline-block;" class="blink-anim"></span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#25D366;">Online · Fast Response 24 Jam</span>
+      </div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.8rem,5vw,3rem);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:12px;">
+        Butuh Bantuan?<br><span style="color:#CC0000;">Kami Siap Melayani!</span>
+      </h2>
+      <p style="font-family:'Barlow',sans-serif;color:#888;font-size:0.9rem;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;">
+        Konsultasi gratis, dapatkan solusi terbaik untuk kebutuhan CCTV Anda. Tim kami siap membantu 24 jam.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px;">
+        <a href="https://wa.me/6281234567890?text=Halo%20ATI-CCTV%2C%20saya%20ingin%20konsultasi%20CCTV" class="btn-wa" style="font-size:1rem;padding:14px 32px;" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          Chat via WhatsApp
+        </a>
+        <a href="#paket" class="btn-outline" style="font-size:1rem;padding:14px 28px;">Lihat Katalog Produk</a>
+      </div>
+
+      <!-- Trust row -->
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:6px;color:#666;font-size:0.78rem;font-family:'Barlow',sans-serif;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Aman & Terpercaya
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;color:#666;font-size:0.78rem;font-family:'Barlow',sans-serif;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Respon Cepat
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;color:#666;font-size:0.78rem;font-family:'Barlow',sans-serif;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Profesional Berpengalaman
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;color:#666;font-size:0.78rem;font-family:'Barlow',sans-serif;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Garansi Bergaransi
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  FOOTER                                    -->
+<!-- ═══════════════════════════════════════════ -->
+<footer>
+  <div style="max-width:1280px;margin:0 auto;padding:56px 20px 32px;">
+    <div style="display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:48px;" id="footer-grid">
+
+      <!-- Brand col -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,12 65,32 88,50 65,68 50,88 35,68 12,50 35,32" fill="none" stroke="#CC0000" stroke-width="3"/>
+            <polygon points="50,28 60,40 72,50 60,60 50,72 40,60 28,50 40,40" fill="#CC0000"/>
+            <polygon points="50,35 57,44 65,50 57,56 50,65 43,56 35,50 43,44" fill="#111"/>
+          </svg>
+          <div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.04em;">
+              <span style="color:#D0D0D0;">ATI-</span><span style="color:#CC0000;">CCTV</span>
+            </div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.12em;color:#555;text-transform:uppercase;">Solusi Keamanan Terpercaya</div>
+          </div>
+        </div>
+        <p style="font-family:'Barlow',sans-serif;color:#555;font-size:0.82rem;line-height:1.7;max-width:280px;margin-bottom:20px;">
+          Menyediakan produk CCTV berkualitas dan jasa instalasi profesional untuk keamanan maksimal rumah & bisnis Anda.
+        </p>
+        <!-- Social -->
+        <div style="display:flex;gap:10px;">
+          <a href="#" style="width:36px;height:36px;border:1px solid #2a2a2a;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#666;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='#CC0000';this.style.color='#CC0000';" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#666';">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" style="width:36px;height:36px;border:1px solid #2a2a2a;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#666;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='#CC0000';this.style.color='#CC0000';" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#666';">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" style="width:36px;height:36px;border:1px solid #2a2a2a;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#666;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='#CC0000';this.style.color='#CC0000';" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#666';">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.25 8.25 0 004.83 1.56V6.79a4.85 4.85 0 01-1.06-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;" id="footer-links-grid">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#fff;margin-bottom:14px;">Produk</div>
+          <a href="#produk" class="footer-link">IP Camera</a>
+          <a href="#produk" class="footer-link">Analog Camera</a>
+          <a href="#produk" class="footer-link">DVR / NVR</a>
+          <a href="#produk" class="footer-link">Aksesoris</a>
+          <a href="#produk" class="footer-link">Hardisk Surveillance</a>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#fff;margin-bottom:14px;">Paket CCTV</div>
+          <a href="#paket" class="footer-link">Paket 4 Channel</a>
+          <a href="#paket" class="footer-link">Paket 8 Channel</a>
+          <a href="#paket" class="footer-link">Paket 16 Channel</a>
+          <a href="#paket" class="footer-link">Paket CCTV IP</a>
+          <a href="#paket" class="footer-link">Semua Paket</a>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#fff;margin-bottom:14px;">Layanan</div>
+          <a href="#layanan" class="footer-link">Instalasi CCTV</a>
+          <a href="#layanan" class="footer-link">Maintenance</a>
+          <a href="#layanan" class="footer-link">Perbaikan</a>
+          <a href="#layanan" class="footer-link">Setting Online</a>
+          <a href="#layanan" class="footer-link">Free Survey</a>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#fff;margin-bottom:14px;">Hubungi Kami</div>
+          <a href="https://wa.me/6281234567890" class="footer-link" target="_blank">08xx-xxxx-xxxx (WA)</a>
+          <a href="mailto:info@aticctv.com" class="footer-link">info@aticctv.com</a>
+          <a href="#kontak" class="footer-link">Lampung Selatan</a>
+          <a href="#kontak" class="footer-link">Jabodetabek & Sekitarnya</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="border-top:1px solid #1a1a1a;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+      <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:#444;">
+        © 2024 ATI-CCTV. All Rights Reserved.
+      </div>
+      <div style="display:flex;gap:16px;">
+        <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.04em;color:#333;">HIK<span style="color:#CC0000;">VISION</span></span>
+        <span style="font-family:'Oswald',sans-serif;font-weight:500;font-size:0.8rem;color:#333;">HiLook</span>
+        <span style="font-family:'Oswald',sans-serif;font-weight:500;font-size:0.8rem;color:#333;">EZVIZ</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @media (min-width: 768px) {
+    #footer-grid { grid-template-columns: 280px 1fr !important; }
+    #footer-links-grid { grid-template-columns: repeat(4,1fr) !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  DATA & JAVASCRIPT                         -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+// ── DATA ──────────────────────────────────────
+const STORE_CONFIG = {
+  name: "ATI-CCTV",
+  whatsapp: "6281234567890",
+  address: "Lampung Selatan",
+  openHours: "08:00 - 21:00",
+  heroTitle: "Professional CCTV Security System",
+  heroSubtitle: "Solusi CCTV modern dengan kualitas premium untuk rumah, toko, kantor, dan bisnis.",
+  freeConsultation: true,
+  installationService: true,
+  mobileMonitoring: true
+};
+
+const categories = [
+  { id: "all",           name: "Semua",        icon: "grid" },
+  { id: "analog-camera", name: "Camera Analog", icon: "analog" },
+  { id: "ip-camera",     name: "IP Camera",     icon: "ipcam" },
+  { id: "dvr",           name: "DVR",           icon: "dvr" },
+  { id: "nvr",           name: "NVR",           icon: "nvr" },
+  { id: "paket-cctv",    name: "Paket CCTV",    icon: "package" },
+  { id: "smart-home",    name: "Smart Home",    icon: "smart" },
+  { id: "accessories",   name: "Accessories",   icon: "accessories" }
+];
+
+const products = [
+  {
+    id: 1, slug: "hikvision-3k-turret",
+    category: "analog-camera",
+    name: "HIKVISION 3K Smart Hybrid",
+    brand: "HIKVISION", type: "Analog Camera", resolution: "3K UHD",
+    price: 525000, originalPrice: 650000,
+    badge: "BEST SELLER", stock: "READY STOCK",
+    image: "/assets/products/hikvision-3k-1.webp",
+    shortDescription: "Camera analog 3K dengan Smart Hybrid Light dan night vision jernih.",
+    features: ["3K UHD Resolution","Smart Hybrid Light","Digital WDR","Night Vision","Outdoor Ready"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan HIKVISION 3K Smart Hybrid Light."
+  },
+  {
+    id: 2, slug: "hikvision-dome-2mp",
+    category: "ip-camera",
+    name: "HIKVISION Dome 2MP",
+    brand: "HIKVISION", type: "IP Camera", resolution: "2MP",
+    price: 550000, originalPrice: 699000,
+    badge: "NEW", stock: "READY STOCK",
+    image: "/assets/products/hikvision-dome-2mp.webp",
+    shortDescription: "IP Camera dome dengan EXIR Night Vision 30m, DWDR, dan waterproof IP67.",
+    features: ["Resolusi 2MP","EXIR Night Vision 30m","DWDR","Waterproof IP67","3D DNR"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Hikvision Dome 2MP."
+  },
+  {
+    id: 3, slug: "hikvision-dvr-4ch",
+    category: "dvr",
+    name: "Hikvision DVR 4 Channel",
+    brand: "HIKVISION", type: "DVR", resolution: "HD 1080P Lite",
+    price: 750000, originalPrice: 950000,
+    badge: "HOT DEAL", stock: "READY STOCK",
+    image: "/assets/products/hikvision-dvr-4ch.webp",
+    shortDescription: "DVR 4 channel HD 1080P Lite dengan H.265 Pro+ dan support HDD 10TB.",
+    features: ["Support 4 Camera","HD 1080P Lite","H.265 Pro+","Support HDD 10TB","Multi Platform"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Hikvision DVR 4 Channel."
+  },
+  {
+    id: 4, slug: "hikvision-nvr-8ch",
+    category: "nvr",
+    name: "Hikvision NVR 8 Channel",
+    brand: "HIKVISION", type: "NVR", resolution: "Up to 8MP",
+    price: 1450000, originalPrice: 1850000,
+    badge: "BEST VALUE", stock: "READY STOCK",
+    image: "/assets/products/hikvision-nvr-8ch.webp",
+    shortDescription: "NVR 8 channel support 8MP resolution dengan H.265+ compression.",
+    features: ["Support 8 IP Camera","Up to 8MP Resolution","H.265+ Compression","Up to 10TB HDD","HDMI & VGA Output"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Hikvision NVR 8 Channel."
+  },
+  {
+    id: 5, slug: "paket-4-channel",
+    category: "paket-cctv",
+    name: "Paket CCTV 4 Channel",
+    brand: "HIKVISION", type: "CCTV Package", resolution: "2MP / 1080P",
+    price: 2100000, originalPrice: 2500000,
+    badge: "PROMO", stock: "READY STOCK",
+    image: "/assets/products/paket-4ch.webp",
+    shortDescription: "Paket CCTV lengkap untuk rumah dan toko kecil, include instalasi.",
+    features: ["4 Camera 2MP","1x DVR 4 Channel","1x HDD 500GB","Kabel + Connector","Gratis Instalasi"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Paket CCTV 4 Channel."
+  },
+  {
+    id: 6, slug: "ezviz-h6c",
+    category: "smart-home",
+    name: "EZVIZ H6C WiFi Camera",
+    brand: "EZVIZ", type: "WiFi Camera", resolution: "2MP 1080P",
+    price: 425000, originalPrice: 500000,
+    badge: "NEW", stock: "READY STOCK",
+    image: "/assets/products/ezviz-h6c.webp",
+    shortDescription: "WiFi camera pintar dengan monitoring langsung dari smartphone.",
+    features: ["WiFi Connection","Two Way Audio","Motion Detection","Mobile Monitoring","Night Vision"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan EZVIZ H6C WiFi Camera."
+  },
+  {
+    id: 7, slug: "wd-purple-1tb",
+    category: "accessories",
+    name: "WD Purple 1TB",
+    brand: "WD", type: "Hardisk Surveillance", resolution: "1TB SATA",
+    price: 750000, originalPrice: 900000,
+    badge: "RECOMMENDED", stock: "READY STOCK",
+    image: "/assets/products/wd-purple-1tb.webp",
+    shortDescription: "Hardisk khusus CCTV surveillance, 24/7 reliable dengan workload rating tinggi.",
+    features: ["Khusus CCTV","24/7 Reliable","High Workload Rating","SATA 3.5\"","Garansi Resmi"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan WD Purple 1TB."
+  },
+  {
+    id: 8, slug: "kabel-siamese-20m",
+    category: "accessories",
+    name: "Kabel Siamese CCTV 20m",
+    brand: "ATI-CCTV", type: "Aksesoris", resolution: "20 Meter",
+    price: 125000, originalPrice: 150000,
+    badge: null, stock: "READY STOCK",
+    image: "/assets/products/kabel-siamese.webp",
+    shortDescription: "Kabel video + power kualitas premium, plug & play, tahan cuaca.",
+    features: ["Panjang 20 Meter","Kabel Video + Power","Kualitas Premium","Plug & Play","Tahan Cuaca"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Kabel Siamese CCTV 20m."
+  }
+];
+
+const packages = [
+  {
+    id: "pkg-4ch",
+    name: "Paket CCTV 4 Channel",
+    subtitle: "Untuk Rumah & Toko Kecil",
+    price: 2100000,
+    originalPrice: 2500000,
+    badge: "BEST SELLER",
+    featured: false,
+    includes: ["4x Camera 2MP","1x DVR 4 Channel","1x HDD 500GB","Kabel + Connector","Power Supply","Gratis Instalasi*"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Paket CCTV 4 Channel."
+  },
+  {
+    id: "pkg-8ch",
+    name: "Paket CCTV 8 Channel",
+    subtitle: "Untuk Kantor & Rumah Besar",
+    price: 3200000,
+    originalPrice: 3900000,
+    badge: "POPULER",
+    featured: true,
+    includes: ["8x Camera 2MP","1x DVR 8 Channel","1x HDD 1TB","Kabel + Connector","Power Supply","Gratis Instalasi*"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Paket CCTV 8 Channel."
+  },
+  {
+    id: "pkg-16ch",
+    name: "Paket CCTV 16 Channel",
+    subtitle: "Untuk Gudang & Industri",
+    price: 5500000,
+    originalPrice: 6500000,
+    badge: "ENTERPRISE",
+    featured: false,
+    includes: ["16x Camera 2MP","1x DVR 16 Channel","1x HDD 2TB","Kabel + Connector","Power Supply","Gratis Instalasi*"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Paket CCTV 16 Channel."
+  },
+  {
+    id: "pkg-ip-4ch",
+    name: "Paket CCTV IP 4 Channel",
+    subtitle: "IP Camera System Full HD",
+    price: 3800000,
+    originalPrice: 4500000,
+    badge: "PREMIUM",
+    featured: false,
+    includes: ["4x IP Camera 2MP","1x NVR 4 Channel POE","1x HDD 1TB","Kabel UTP + Connector","Switch POE","Gratis Instalasi*"],
+    whatsappMessage: "Halo ATI-CCTV, saya tertarik dengan Paket CCTV IP 4 Channel."
+  }
+];
+
+const testimonials = [
+  { name: "Budi Santoso", role: "Pemilik Toko Sembako", rating: 5, text: "Pemasangan rapi, teknisi ramah dan hasil kamera sangat jernih. Highly recommended! ATI-CCTV memang profesional." },
+  { name: "Dewi Lestari", role: "Ibu Rumah Tangga", rating: 5, text: "Pelayanan cepat dari survey sampai pemasangan. Harga sesuai kualitas. Mantap ATI-CCTV, survey gratis dan langsung terpasang." },
+  { name: "Andi Pratama", role: "Office Manager", rating: 5, text: "Kantor jadi lebih aman dengan sistem CCTV dari ATI-CCTV. Support sangat membantu, bisa akses dari HP kapan saja." },
+  { name: "Rizky Maulana", role: "Pemilik Gudang", rating: 5, text: "Produk original, garansi resmi, dan instalasi sangat profesional. 16 kamera terpasang rapi di gudang besar kami." }
+];
+
+const serviceAreas = [
+  "Jakarta Selatan","Jakarta Utara","Jakarta Barat","Jakarta Timur",
+  "Bogor","Depok","Tangerang","Bekasi","Lampung"
+];
+
+const galeriItems = [
+  { label: "Rumah Tinggal", sub: "4 Channel" },
+  { label: "Toko / Retail", sub: "8 Channel" },
+  { label: "Gudang", sub: "16 Channel" },
+  { label: "Kantor", sub: "8 Channel" },
+  { label: "Outdoor", sub: "Night Vision" },
+  { label: "Monitoring Room", sub: "Real-time" }
+];
+
+// ── HELPERS ──────────────────────────────────
+const formatRp = n => "Rp " + n.toLocaleString("id-ID");
+
+const createWaLink = msg =>
+  `https://wa.me/${STORE_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+
+const badgeColor = b => {
+  const map = {
+    "BEST SELLER":"badge-red","PROMO":"badge-red","HOT DEAL":"badge-orange",
+    "NEW":"badge-blue","LIMITED":"badge-orange","BEST VALUE":"badge-green",
+    "POPULER":"badge-red","ENTERPRISE":"badge-green","PREMIUM":"badge-blue",
+    "RECOMMENDED":"badge-green"
+  };
+  return map[b] || "badge-red";
+};
+
+const discount = (orig, price) =>
+  orig > price ? Math.round((1 - price/orig)*100) : 0;
+
+// ── TICKER ───────────────────────────────────
+function buildTicker() {
+  const items = [
+    "✦ Produk Original 100% Berkualitas",
+    "✦ Free Survey Area Jabodetabek",
+    "✦ Instalasi Profesional Rapi & Aman",
+    "✦ Support 24 Jam Siap Melayani",
+    "✦ Garansi Resmi Hingga 2 Tahun",
+    "✦ Diskon Paket CCTV Hingga 20%",
+    "✦ Merek: Hikvision · HiLook · EZVIZ",
+    "✦ Konsultasi Gratis via WhatsApp"
+  ];
+  const html = [...items, ...items].map(i =>
+    `<span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 32px;white-space:nowrap;">${i}</span>`
+  ).join('');
+  document.getElementById('ticker').innerHTML = html;
+}
+
+// ── CATEGORY FILTERS ─────────────────────────
+let activeFilter = "all";
+
+function buildFilters() {
+  const el = document.getElementById('cat-filters');
+  el.innerHTML = categories.map(c =>
+    `<button class="cat-pill${c.id==='all'?' active':''}" data-cat="${c.id}" onclick="filterProducts('${c.id}')">${c.name}</button>`
+  ).join('');
+}
+
+function filterProducts(catId) {
+  activeFilter = catId;
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === catId);
+  });
+  const filtered = catId === 'all' ? products : products.filter(p => p.category === catId);
+  renderProducts(filtered);
+}
+
+// ── PRODUCT CARDS ─────────────────────────────
+function renderProducts(list) {
+  const grid = document.getElementById('product-grid');
+  if (!list.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:#555;font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;">Produk tidak ditemukan</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => {
+    const disc = discount(p.originalPrice, p.price);
+
+    /* Badge — positioned on image */
+    const badgePart = p.badge
+      ? `<span class="pc-badge-img badge ${badgeColor(p.badge)}">${p.badge}</span>`
+      : '';
+
+    /* Stock — inline in body meta row */
+    const stockClass = p.stock === 'READY STOCK' ? 'pc-stock-ready' : 'pc-stock-empty';
+    const stockLabel = p.stock === 'READY STOCK' ? 'Ready' : 'Indent';
+
+    /* Features — max 3 lines */
+    const featuresHtml = p.features.slice(0, 3).map(f =>
+      `<div class="pc-feat"><span class="pc-feat-dot" aria-hidden="true"></span>${f}</div>`
+    ).join('');
+
+    /* Price parts */
+    const origPriceHtml = p.originalPrice > p.price
+      ? `<span class="pc-price-orig">${formatRp(p.originalPrice)}</span>` : '';
+    const discHtml = disc > 0
+      ? `<span class="pc-disc">-${disc}%</span>` : '';
+
+    /* Category SVG icon */
+    const iconSvg = (() => {
+      if (p.category === 'dvr' || p.category === 'nvr') return (
+        `<svg width="80" height="48" viewBox="0 0 80 44" fill="none" aria-hidden="true">
+          <rect x="1" y="4" width="78" height="36" rx="5" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+          <rect x="5" y="9" width="32" height="26" rx="2" fill="#111"/>
+          <circle cx="54" cy="15" r="2.5" fill="#CC0000" opacity="0.9"/>
+          <circle cx="62" cy="15" r="2.5" fill="#16a34a" opacity="0.8"/>
+          <rect x="50" y="23" width="24" height="3" rx="1.5" fill="#252525"/>
+          <rect x="50" y="29" width="16" height="3" rx="1.5" fill="#1e1e1e"/>
+          <rect x="69" y="9" width="6" height="26" rx="1" fill="#161616" stroke="#222" stroke-width="1"/>
+        </svg>`
+      );
+      if (p.category === 'accessories') return (
+        `<svg width="72" height="52" viewBox="0 0 72 52" fill="none" aria-hidden="true">
+          <rect x="8" y="10" width="56" height="36" rx="5" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+          <circle cx="36" cy="28" r="12" fill="#161616" stroke="#2e2e2e" stroke-width="1"/>
+          <circle cx="36" cy="28" r="6" fill="#111" stroke="#CC0000" stroke-width="1"/>
+          <circle cx="36" cy="28" r="2.5" fill="#080808"/>
+          <line x1="2" y1="28" x2="11" y2="28" stroke="#CC0000" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="61" y1="28" x2="70" y2="28" stroke="#CC0000" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>`
+      );
+      if (p.category === 'paket-cctv') return (
+        `<svg width="88" height="56" viewBox="0 0 88 56" fill="none" aria-hidden="true">
+          <rect x="0" y="20" width="26" height="16" rx="4" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.2"/>
+          <circle cx="13" cy="28" r="4.5" fill="#111" stroke="#CC0000" stroke-width="1"/>
+          <rect x="31" y="13" width="26" height="16" rx="4" fill="#222" stroke="#333" stroke-width="1.3"/>
+          <circle cx="44" cy="21" r="5" fill="#111" stroke="#CC0000" stroke-width="1.2"/>
+          <rect x="62" y="20" width="26" height="16" rx="4" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.2"/>
+          <circle cx="75" cy="28" r="4.5" fill="#111" stroke="#CC0000" stroke-width="1"/>
+          <rect x="30" y="36" width="28" height="16" rx="3" fill="#181818" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="36" cy="42" r="2" fill="#CC0000" opacity="0.9"/>
+          <circle cx="43" cy="42" r="2" fill="#16a34a" opacity="0.8"/>
+          <rect x="36" y="47" width="16" height="2" rx="1" fill="#222"/>
+        </svg>`
+      );
+      /* default: bullet camera */
+      return (
+        `<svg width="80" height="52" viewBox="0 0 80 52" fill="none" aria-hidden="true">
+          <rect x="0" y="12" width="56" height="28" rx="7" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+          <rect x="3" y="15" width="50" height="22" rx="5" fill="#141414"/>
+          <circle cx="27" cy="26" r="9.5" fill="#222" stroke="#CC0000" stroke-width="1.5"/>
+          <circle cx="27" cy="26" r="5.5" fill="#111"/>
+          <circle cx="27" cy="26" r="2.5" fill="#080808"/>
+          <circle cx="24.5" cy="23.5" r="1" fill="rgba(255,255,255,0.1)"/>
+          <rect x="56" y="20" width="18" height="12" rx="3" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+          <rect x="47" y="23" width="11" height="6" rx="2" fill="#181818"/>
+          <circle cx="71" cy="46" r="3" fill="#CC0000" opacity="0.8"/>
+        </svg>`
+      );
+    })();
+
+    return `
+    <div class="product-card reveal">
+
+      <!-- Image zone -->
+      <div class="img-placeholder">
+        ${iconSvg}
+        ${badgePart}
+      </div>
+
+      <!-- Body -->
+      <div class="pc-body">
+
+        <!-- Meta row: type + stock -->
+        <div class="pc-meta">
+          <span class="pc-type">${p.type}</span>
+          <span class="pc-stock ${stockClass}">${stockLabel}</span>
+        </div>
+
+        <!-- Name -->
+        <h3 class="pc-name">${p.name}</h3>
+
+        <!-- Features — flex:1 pushes price to bottom -->
+        <div class="pc-features">
+          ${featuresHtml}
+        </div>
+
+        <!-- Price -->
+        <div class="pc-price-row">
+          <span class="pc-price-main">${formatRp(p.price)}</span>
+          ${origPriceHtml}
+          ${discHtml}
+        </div>
+
+        <!-- CTAs: order primary (full-width), detail secondary -->
+        <div class="pc-actions">
+          <a href="${createWaLink(p.whatsappMessage)}"
+             class="pc-btn-order" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+            Pesan Sekarang
+          </a>
+          <button data-modal-id="${p.id}"
+             class="pc-btn-detail" aria-label="Lihat detail ${p.name}">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Lihat Detail
+          </button>
+        </div>
+
+      </div>
+    </div>`;
+  }).join('');
+  // re-observe new cards
+  observeReveal();
+}
+
+// ── PACKAGES ─────────────────────────────────
+function renderPackages() {
+  const grid = document.getElementById('pkg-grid');
+  grid.innerHTML = packages.map(p => `
+    <div class="pkg-card reveal${p.featured?' featured':''}">
+      ${p.featured ? '<div class="corner-accent"></div>' : ''}
+      <div style="margin-bottom:16px;">
+        <span class="badge ${badgeColor(p.badge)}" style="margin-bottom:10px;display:inline-block;">${p.badge}</span>
+        <h3 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.02em;color:#fff;margin-bottom:4px;">${p.name}</h3>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.78rem;color:#666;">${p.subtitle}</div>
+      </div>
+      <!-- Price -->
+      <div style="margin-bottom:16px;padding:12px;background:rgba(204,0,0,0.06);border-radius:6px;border:1px solid rgba(204,0,0,0.15);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;color:#888;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Mulai dari</div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.6rem;color:#CC0000;">${formatRp(p.price)}</div>
+          <div class="price-original">${formatRp(p.originalPrice)}</div>
+        </div>
+      </div>
+      <!-- Includes -->
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+        ${p.includes.map(i=>`
+          <div class="feat-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            ${i}
+          </div>`).join('')}
+      </div>
+      <a href="${createWaLink(p.whatsappMessage)}" class="btn-${p.featured?'primary':'outline'}" style="width:100%;justify-content:center;" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+        Pesan Sekarang
+      </a>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+// ── SERVICE AREAS ─────────────────────────────
+function renderAreas() {
+  const el = document.getElementById('area-grid');
+  el.innerHTML = serviceAreas.map(a =>
+    `<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.78rem;color:#888;">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="#CC0000"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 010 16c-4.4-1.1-8-5.5-8-8s3.6-9 8-8z"/></svg>
+      ${a}
+    </div>`
+  ).join('');
+}
+
+// ── GALERI ────────────────────────────────────
+function renderGaleri() {
+  const colors = ['#1a0a0a','#0d1a0a','#0a0d1a','#1a150a','#0d1a1a','#180a1a'];
+  const grid = document.getElementById('galeri-grid');
+  grid.innerHTML = galeriItems.map((item, i) => `
+    <div class="reveal" style="position:relative;border-radius:8px;overflow:hidden;border:1px solid #2a2a2a;cursor:pointer;group;"
+         onmouseover="this.querySelector('.gal-overlay').style.opacity='1'"
+         onmouseout="this.querySelector('.gal-overlay').style.opacity='0'">
+      <div style="aspect-ratio:4/3;background:linear-gradient(135deg,${colors[i]},#111);display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- placeholder icon -->
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <div style="position:absolute;bottom:10px;left:10px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#fff;">${item.label}</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.65rem;color:#CC0000;">${item.sub}</div>
+        </div>
+      </div>
+      <div class="gal-overlay" style="position:absolute;inset:0;background:rgba(204,0,0,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s;">
+        <div style="width:40px;height:40px;background:#CC0000;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+// ── TESTIMONIALS ──────────────────────────────
+function renderTestimonials() {
+  const grid = document.getElementById('testi-grid');
+  grid.innerHTML = testimonials.map(t => `
+    <div class="testi-card reveal">
+      <div style="display:flex;gap:2px;margin-bottom:12px;">
+        ${Array(t.rating).fill('<svg width="14" height="14" viewBox="0 0 24 24" fill="#CC0000"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>').join('')}
+      </div>
+      <p style="font-family:'Barlow',sans-serif;font-size:0.85rem;color:#aaa;line-height:1.65;margin-bottom:16px;">"${t.text}"</p>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,#CC0000,#660000);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0;">${t.name.charAt(0)}</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;color:#fff;">${t.name}</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#666;">${t.role}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+// ── SCROLL REVEAL ─────────────────────────────
+function observeReveal() {
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+}
+
+// ── NAVBAR SCROLL ─────────────────────────────
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 40) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+}, { passive: true });
+
+// ── MOBILE MENU ───────────────────────────────
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('close-menu').addEventListener('click', closeMobileMenu);
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── INIT ──────────────────────────────────────
+buildTicker();
+buildFilters();
+renderProducts(products);
+renderPackages();
+renderAreas();
+renderGaleri();
+renderTestimonials();
+observeReveal();
+
+// initial reveal for above-fold
+setTimeout(observeReveal, 100);
+
+// ── PRODUCT DETAIL MODAL ──────────────────────
+(function () {
+  'use strict';
+
+  /* ── Spec map per category ── */
+  const SPECS = {
+    'analog-camera': [
+      { label: 'Resolusi',     key: 'resolution'      },
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Night Vision', val: 'IR Smart'        },
+      { label: 'Weatherproof', val: 'IP66 / IP67'     },
+      { label: 'Koneksi',      val: 'Coaxial BNC'     },
+    ],
+    'ip-camera': [
+      { label: 'Resolusi',     key: 'resolution'      },
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Night Vision', val: 'EXIR / Color'    },
+      { label: 'Weatherproof', val: 'IP67'            },
+      { label: 'Koneksi',      val: 'RJ45 PoE / WiFi' },
+    ],
+    'dvr': [
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Kompresi',     val: 'H.265 Pro+'      },
+      { label: 'HDD Support',  val: 'Up to 10TB'      },
+      { label: 'Output',       val: 'HDMI & VGA'      },
+      { label: 'Remote',       val: 'Aplikasi HP'     },
+    ],
+    'nvr': [
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Kompresi',     val: 'H.265+'          },
+      { label: 'HDD Support',  val: 'Up to 10TB'      },
+      { label: 'Output',       val: 'HDMI & VGA'      },
+      { label: 'Remote',       val: 'Aplikasi HP'     },
+    ],
+    'paket-cctv': [
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Instalasi',    val: 'Gratis'          },
+      { label: 'Setting',      val: 'Gratis'          },
+      { label: 'Garansi',      val: '1–2 Tahun'       },
+      { label: 'Area',         val: 'Jabodetabek'     },
+      { label: 'Support',      val: '24 Jam'          },
+    ],
+    'smart-home': [
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Koneksi',      val: 'WiFi 2.4GHz'    },
+      { label: 'Audio',        val: 'Two Way'         },
+      { label: 'Notifikasi',   val: 'Push & Email'    },
+      { label: 'Akses',        val: 'Aplikasi HP'     },
+    ],
+    'accessories': [
+      { label: 'Brand',        key: 'brand'           },
+      { label: 'Tipe',         key: 'type'            },
+      { label: 'Garansi',      val: 'Resmi'           },
+      { label: 'Kondisi',      val: 'Baru / Original' },
+      { label: 'Stok',         key: 'stock'           },
+    ],
+  };
+
+  /* ── Inject modal HTML once ── */
+  function injectModal() {
+    if (document.getElementById('pdm')) return;
+
+    const el = document.createElement('div');
+    el.innerHTML = `
+<style>
+/* ══════════════════════════════
+   PRODUCT DETAIL MODAL
+══════════════════════════════ */
+#pdm {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 900;
+  display: flex;
+  align-items: flex-end;          /* sheet slides up on mobile */
+  justify-content: center;
+  padding: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#pdm.pdm-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Backdrop */
+#pdm-backdrop {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+#pdm.pdm-open #pdm-backdrop {
+  background: rgba(0,0,0,0.78);
+}
+
+/* Sheet */
+#pdm-sheet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  max-height: 92vh;
+  background: #131313;
+  border-radius: 16px 16px 0 0;
+  border-top: 1px solid #252525;
+  border-left: 1px solid #1e1e1e;
+  border-right: 1px solid #1e1e1e;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 -16px 64px rgba(0,0,0,0.7);
+}
+#pdm.pdm-open #pdm-sheet {
+  transform: translateY(0);
+}
+
+/* Desktop: centered dialog instead of bottom sheet */
+@media (min-width: 680px) {
+  #pdm {
+    align-items: center;
+    padding: 24px;
+  }
+  #pdm-sheet {
+    border-radius: 12px;
+    border: 1px solid #252525;
+    max-height: 88vh;
+    transform: translateY(16px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  #pdm.pdm-open #pdm-sheet {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Drag handle (mobile only) */
+#pdm-handle {
+  width: 36px; height: 4px;
+  background: #2e2e2e;
+  border-radius: 2px;
+  margin: 10px auto 0;
+  flex-shrink: 0;
+}
+@media (min-width: 680px) {
+  #pdm-handle { display: none; }
+}
+
+/* Scrollable inner */
+#pdm-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  overscroll-behavior: contain;
+}
+#pdm-scroll::-webkit-scrollbar { width: 3px; }
+#pdm-scroll::-webkit-scrollbar-track { background: transparent; }
+#pdm-scroll::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+/* Close button */
+#pdm-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: #666;
+  transition: background 0.2s, color 0.2s;
+}
+#pdm-close:hover { background: #2a2a2a; color: #fff; }
+
+/* Image gallery zone */
+#pdm-gallery {
+  background: #181818;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pdm-main-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #181818;
+  position: relative;
+  overflow: hidden;
+}
+.pdm-main-img::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle, rgba(204,0,0,0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.pdm-main-img-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; height: 100%;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.2s ease;
+}
+.pdm-main-img-inner.pdm-fade { opacity: 0; }
+
+/* Thumbnails row */
+.pdm-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #131313;
+  border-bottom: 1px solid #1e1e1e;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pdm-thumbs::-webkit-scrollbar { display: none; }
+.pdm-thumb {
+  width: 52px; height: 40px;
+  border-radius: 5px;
+  border: 1.5px solid #252525;
+  background: #1e1e1e;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.18s;
+}
+.pdm-thumb:hover { border-color: #444; }
+.pdm-thumb.active { border-color: #CC0000; }
+
+/* Body content */
+#pdm-body {
+  padding: 20px 18px 24px;
+}
+
+/* Header */
+.pdm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.pdm-type-badge {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #CC0000;
+  background: rgba(204,0,0,0.08);
+  border: 1px solid rgba(204,0,0,0.16);
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+.pdm-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  color: #f0f0f0;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.pdm-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.84rem;
+  color: #666;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+/* Price block */
+.pdm-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #0e0e0e;
+  border: 1px solid #1e1e1e;
+  border-radius: 7px;
+  margin-bottom: 18px;
+}
+.pdm-price-main {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 1.55rem;
+  color: #CC0000;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.pdm-price-orig {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.8rem;
+  color: #3a3a3a;
+  text-decoration: line-through;
+}
+.pdm-price-disc {
+  margin-left: auto;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: #990000;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+.pdm-price-stock {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+.pdm-stock-ready { color: #4ade80; background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); }
+.pdm-stock-empty { color: #fb923c; background: rgba(251,146,60,0.07); border: 1px solid rgba(251,146,60,0.2); }
+
+/* Divider */
+.pdm-divider {
+  height: 1px;
+  background: #1c1c1c;
+  margin: 16px 0;
+}
+
+/* Features */
+.pdm-section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 10px;
+}
+.pdm-features {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 0;
+}
+.pdm-feat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.35;
+}
+.pdm-feat-icon {
+  width: 18px; height: 18px;
+  background: rgba(204,0,0,0.08);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Specs grid */
+.pdm-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #1c1c1c;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid #1c1c1c;
+}
+.pdm-spec-cell {
+  background: #111;
+  padding: 10px 12px;
+}
+.pdm-spec-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 3px;
+}
+.pdm-spec-val {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.8rem;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Sticky CTA footer */
+#pdm-cta {
+  padding: 14px 18px;
+  background: #0e0e0e;
+  border-top: 1px solid #1c1c1c;
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.pdm-cta-wa {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25D366;
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 13px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.pdm-cta-wa:hover {
+  background: #1da851;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+}
+.pdm-cta-catalog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  color: #555;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 13px 14px;
+  border-radius: 6px;
+  border: 1px solid #222;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.pdm-cta-catalog:hover { border-color: #333; color: #888; }
+
+/* Trust strip inside modal */
+.pdm-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 18px 16px;
+  background: #0e0e0e;
+}
+.pdm-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.7rem;
+  color: #444;
+}
+.pdm-trust-dot {
+  width: 5px; height: 5px;
+  background: #CC0000;
+  border-radius: 50%;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+@media (max-width: 380px) {
+  #pdm-body { padding: 16px 14px 20px; }
+  .pdm-price-main { font-size: 1.35rem; }
+  .pdm-title { font-size: 1.05rem; }
+}
+</style>
+
+<div id="pdm" role="dialog" aria-modal="true" aria-label="Detail Produk">
+  <div id="pdm-backdrop" aria-hidden="true"></div>
+  <div id="pdm-sheet">
+    <div id="pdm-handle" aria-hidden="true"></div>
+    <button id="pdm-close" aria-label="Tutup detail produk">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Gallery -->
+    <div id="pdm-gallery">
+      <div class="pdm-main-img">
+        <div class="pdm-main-img-inner" id="pdm-main-img-inner"></div>
+      </div>
+      <div class="pdm-thumbs" id="pdm-thumbs"></div>
+    </div>
+
+    <!-- Scrollable body -->
+    <div id="pdm-scroll">
+      <div id="pdm-body">
+
+        <div class="pdm-type-badge" id="pdm-type"></div>
+        <div class="pdm-title" id="pdm-title"></div>
+        <div class="pdm-desc" id="pdm-desc"></div>
+
+        <!-- Price -->
+        <div class="pdm-price-block">
+          <span class="pdm-price-main" id="pdm-price-main"></span>
+          <span class="pdm-price-orig" id="pdm-price-orig"></span>
+          <span class="pdm-price-disc" id="pdm-price-disc" style="display:none;"></span>
+          <span class="pdm-price-stock" id="pdm-price-stock"></span>
+        </div>
+
+        <!-- Features -->
+        <div class="pdm-section-label">Fitur Utama</div>
+        <div class="pdm-features" id="pdm-features"></div>
+
+        <div class="pdm-divider"></div>
+
+        <!-- Specs -->
+        <div class="pdm-section-label">Spesifikasi</div>
+        <div class="pdm-specs" id="pdm-specs"></div>
+
+      </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div id="pdm-cta">
+      <a id="pdm-wa-btn" href="#" class="pdm-cta-wa" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.527 5.855L.057 23.943l6.235-1.447A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.7.859.874-3.601-.233-.371A9.818 9.818 0 1112 21.818z"/></svg>
+        Pesan via WhatsApp
+      </a>
+      <a id="pdm-catalog-btn" href="#paket" class="pdm-cta-catalog">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Paket
+      </a>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="pdm-trust">
+      <div class="pdm-trust-item"><div class="pdm-trust-dot" aria-hidden="true"></div>Produk Original</div>
+      <div class="pdm-trust-item"><div class="pdm-trust-dot" aria-hidden="true"></div>Garansi Resmi</div>
+      <div class="pdm-trust-item"><div class="pdm-trust-dot" aria-hidden="true"></div>Free Survey</div>
+      <div class="pdm-trust-item"><div class="pdm-trust-dot" aria-hidden="true"></div>Support 24 Jam</div>
+    </div>
+
+  </div>
+</div>`;
+
+    const styleNode = el.querySelector('style');
+    const pdmNode   = el.querySelector('#pdm');
+    document.body.appendChild(styleNode);
+    document.body.appendChild(pdmNode);
+
+    /* Bind close events */
+    document.getElementById('pdm-close').addEventListener('click', closeModal);
+    document.getElementById('pdm-backdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /* Swipe-down to close on mobile */
+    let touchStartY = 0;
+    const sheet = document.getElementById('pdm-sheet');
+    sheet.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    sheet.addEventListener('touchend', function (e) {
+      const delta = e.changedTouches[0].clientY - touchStartY;
+      if (delta > 80) closeModal();
+    }, { passive: true });
+  }
+
+  /* ── Icon SVG per category (reused from card renderer) ── */
+  function getIconSvg(category, size) {
+    const s = size || 88;
+    if (category === 'dvr' || category === 'nvr') return (
+      `<svg width="${s}" height="${Math.round(s*0.55)}" viewBox="0 0 80 44" fill="none" aria-hidden="true">
+        <rect x="1" y="4" width="78" height="36" rx="5" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+        <rect x="5" y="9" width="32" height="26" rx="2" fill="#111"/>
+        <circle cx="54" cy="15" r="3" fill="#CC0000" opacity="0.9"/>
+        <circle cx="64" cy="15" r="3" fill="#16a34a" opacity="0.8"/>
+        <rect x="50" y="23" width="24" height="4" rx="2" fill="#252525"/>
+        <rect x="50" y="30" width="16" height="4" rx="2" fill="#1e1e1e"/>
+        <rect x="69" y="9" width="7" height="26" rx="1" fill="#161616" stroke="#222" stroke-width="1"/>
+      </svg>`
+    );
+    if (category === 'accessories') return (
+      `<svg width="${s}" height="${Math.round(s*0.72)}" viewBox="0 0 72 52" fill="none" aria-hidden="true">
+        <rect x="8" y="10" width="56" height="36" rx="5" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+        <circle cx="36" cy="28" r="13" fill="#161616" stroke="#2e2e2e" stroke-width="1"/>
+        <circle cx="36" cy="28" r="7" fill="#111" stroke="#CC0000" stroke-width="1.2"/>
+        <circle cx="36" cy="28" r="3" fill="#080808"/>
+        <line x1="2" y1="28" x2="12" y2="28" stroke="#CC0000" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="60" y1="28" x2="70" y2="28" stroke="#CC0000" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>`
+    );
+    if (category === 'paket-cctv') return (
+      `<svg width="${s}" height="${Math.round(s*0.64)}" viewBox="0 0 88 56" fill="none" aria-hidden="true">
+        <rect x="0" y="20" width="26" height="16" rx="4" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.2"/>
+        <circle cx="13" cy="28" r="4.5" fill="#111" stroke="#CC0000" stroke-width="1"/>
+        <rect x="31" y="13" width="26" height="16" rx="4" fill="#222" stroke="#333" stroke-width="1.3"/>
+        <circle cx="44" cy="21" r="5" fill="#111" stroke="#CC0000" stroke-width="1.2"/>
+        <rect x="62" y="20" width="26" height="16" rx="4" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.2"/>
+        <circle cx="75" cy="28" r="4.5" fill="#111" stroke="#CC0000" stroke-width="1"/>
+        <rect x="30" y="36" width="28" height="16" rx="3" fill="#181818" stroke="#2a2a2a" stroke-width="1"/>
+        <circle cx="37" cy="43" r="2.2" fill="#CC0000" opacity="0.9"/>
+        <circle cx="44" cy="43" r="2.2" fill="#16a34a" opacity="0.8"/>
+        <rect x="37" y="47" width="14" height="2" rx="1" fill="#222"/>
+      </svg>`
+    );
+    /* default bullet camera */
+    return (
+      `<svg width="${s}" height="${Math.round(s*0.65)}" viewBox="0 0 80 52" fill="none" aria-hidden="true">
+        <rect x="0" y="12" width="56" height="28" rx="7" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
+        <rect x="3" y="15" width="50" height="22" rx="5" fill="#141414"/>
+        <circle cx="27" cy="26" r="9.5" fill="#222" stroke="#CC0000" stroke-width="1.5"/>
+        <circle cx="27" cy="26" r="5.5" fill="#111"/>
+        <circle cx="27" cy="26" r="2.5" fill="#080808"/>
+        <circle cx="24.5" cy="23.5" r="1.2" fill="rgba(255,255,255,0.1)"/>
+        <rect x="56" y="20" width="18" height="12" rx="3" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+        <rect x="47" y="23" width="11" height="6" rx="2" fill="#181818"/>
+        <circle cx="71" cy="46" r="3" fill="#CC0000" opacity="0.8"/>
+      </svg>`
+    );
+  }
+
+  /* ── Gallery: generate 3 pseudo-angle SVG frames ── */
+  function buildGalleryFrames(product) {
+    /* Without real images, we show 3 SVG variants:
+       frame 0 = standard view (main icon)
+       frame 1 = slightly larger / angle variant
+       frame 2 = zoomed lens / detail view */
+    const cat = product.category;
+    return [
+      { label: 'Tampak Depan',  svg: getIconSvg(cat, 100) },
+      { label: 'Tampak Samping', svg: getIconSvg(cat, 86)  },
+      { label: 'Detail Lensa',   svg: getIconSvg(cat, 72)  },
+    ];
+  }
+
+  /* ── Render gallery ── */
+  let currentFrame = 0;
+  function renderGallery(frames) {
+    currentFrame = 0;
+    const mainEl   = document.getElementById('pdm-main-img-inner');
+    const thumbsEl = document.getElementById('pdm-thumbs');
+
+    function setFrame(idx) {
+      currentFrame = idx;
+      mainEl.classList.add('pdm-fade');
+      setTimeout(function () {
+        mainEl.innerHTML = frames[idx].svg;
+        mainEl.classList.remove('pdm-fade');
+      }, 140);
+      thumbsEl.querySelectorAll('.pdm-thumb').forEach(function (t, i) {
+        t.classList.toggle('active', i === idx);
+      });
+    }
+
+    /* Initial frame */
+    mainEl.innerHTML = frames[0].svg;
+
+    /* Thumbs */
+    thumbsEl.innerHTML = frames.map(function (f, i) {
+      return `<button class="pdm-thumb${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="${f.label}" title="${f.label}">
+        <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;transform:scale(0.55);">
+          ${f.svg}
+        </div>
+      </button>`;
+    }).join('');
+
+    thumbsEl.addEventListener('click', function (e) {
+      const btn = e.target.closest('.pdm-thumb');
+      if (!btn) return;
+      setFrame(parseInt(btn.getAttribute('data-idx'), 10));
+    });
+  }
+
+  /* ── Populate modal with product data ── */
+  function populateModal(product) {
+    const disc = product.originalPrice > product.price
+      ? Math.round((1 - product.price / product.originalPrice) * 100)
+      : 0;
+
+    /* Gallery */
+    renderGallery(buildGalleryFrames(product));
+
+    /* Meta */
+    document.getElementById('pdm-type').textContent  = product.type;
+    document.getElementById('pdm-title').textContent = product.name;
+    document.getElementById('pdm-desc').textContent  = product.shortDescription || '';
+
+    /* Price */
+    document.getElementById('pdm-price-main').textContent = 'Rp ' + product.price.toLocaleString('id-ID');
+
+    const origEl = document.getElementById('pdm-price-orig');
+    if (product.originalPrice > product.price) {
+      origEl.textContent   = 'Rp ' + product.originalPrice.toLocaleString('id-ID');
+      origEl.style.display = '';
+    } else {
+      origEl.style.display = 'none';
+    }
+
+    const discEl = document.getElementById('pdm-price-disc');
+    if (disc > 0) {
+      discEl.textContent   = '-' + disc + '%';
+      discEl.style.display = '';
+    } else {
+      discEl.style.display = 'none';
+    }
+
+    const stockEl    = document.getElementById('pdm-price-stock');
+    const isReady    = product.stock === 'READY STOCK';
+    stockEl.textContent = isReady ? 'Ready' : 'Indent';
+    stockEl.className = 'pdm-price-stock ' + (isReady ? 'pdm-stock-ready' : 'pdm-stock-empty');
+
+    /* Features */
+    const WA_SVG = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`;
+    document.getElementById('pdm-features').innerHTML = product.features.map(function (f) {
+      return `<div class="pdm-feat">
+        <div class="pdm-feat-icon">${WA_SVG}</div>
+        ${f}
+      </div>`;
+    }).join('');
+
+    /* Specs */
+    const specDefs = SPECS[product.category] || [
+      { label: 'Brand', key: 'brand' },
+      { label: 'Tipe',  key: 'type'  },
+      { label: 'Stok',  key: 'stock' },
+    ];
+    document.getElementById('pdm-specs').innerHTML = specDefs.map(function (s) {
+      const val = s.val !== undefined ? s.val : (product[s.key] || '—');
+      return `<div class="pdm-spec-cell">
+        <div class="pdm-spec-label">${s.label}</div>
+        <div class="pdm-spec-val">${val}</div>
+      </div>`;
+    }).join('');
+
+    /* WA CTA */
+    const waHref = 'https://wa.me/' + STORE_CONFIG.whatsapp
+      + '?text=' + encodeURIComponent(product.whatsappMessage);
+    document.getElementById('pdm-wa-btn').href = waHref;
+
+    /* Reset scroll */
+    document.getElementById('pdm-scroll').scrollTop = 0;
+  }
+
+  /* ── Open / close ── */
+  function openModal(productId) {
+    const product = products.find(function (p) { return p.id === productId; });
+    if (!product) return;
+    injectModal();
+    populateModal(product);
+    const pdm = document.getElementById('pdm');
+    pdm.classList.add('pdm-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const pdm = document.getElementById('pdm');
+    if (!pdm) return;
+    pdm.classList.remove('pdm-open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── Expose globally so renderProducts can call it ── */
+  window.openProductModal = openModal;
+
+  /* ── Wire product grid delegation — detail buttons ── */
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-modal-id]');
+    if (!btn) return;
+    e.preventDefault();
+    openModal(parseInt(btn.getAttribute('data-modal-id'), 10));
+  });
+
+})();
+</script>
+</body>
+</html>
