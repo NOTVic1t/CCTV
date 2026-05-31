@@ -2175,3 +2175,138 @@ ul {
   color: var(--white);
   box-shadow: 0 8px 24px rgba(37,211,102,0.3);
 }
+
+/* ═══════════════════════════════════════════════
+   REAL BRAND LOGOS — Image Replacements
+═══════════════════════════════════════════════ */
+
+/* Brand Section logos */
+.brand-logo-wrap {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 0;
+}
+
+.brand-logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+/* HiLook has a solid blue background — add a soft rounded container */
+.brand-logo-hilook .brand-logo-img {
+  border-radius: 8px;
+}
+
+/* Hikvision logo has white background — show it cleanly on dark card */
+.brand-logo-hik .brand-logo-img {
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  padding: 4px 8px;
+}
+
+/* HiView has transparent/white bg */
+.brand-logo-hiview .brand-logo-img {
+  filter: brightness(1.1);
+}
+
+/* EZVIZ has white background */
+.brand-logo-ezviz .brand-logo-img {
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  padding: 4px 8px;
+}
+
+/* Package card brand bars with logos */
+.pkg-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  min-height: 52px;
+}
+
+.pkg-bar-logo {
+  height: 30px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+/* HiLook bar: white logo on blue bg — logo already white so fine */
+.hilook-bar .pkg-bar-logo {
+  /* logo has blue bg, use it fully */
+  height: 32px;
+  border-radius: 4px;
+}
+
+/* Hikvision bar: white bg logo on red bar */
+.hik-bar .pkg-bar-logo {
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+/* IP Camera section brand tags with logos */
+.ipcam-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  min-height: 40px;
+  min-width: 80px;
+}
+
+.ipcam-tag-logo {
+  height: 24px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  display: block;
+}
+
+.hilook-tag .ipcam-tag-logo {
+  height: 26px;
+  border-radius: 3px;
+}
+
+.hik-tag .ipcam-tag-logo {
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.hiview-tag .ipcam-tag-logo {
+  height: 22px;
+  filter: brightness(10);
+}
+
+.ezviz-tag .ipcam-tag-logo {
+  height: 22px;
+  background: white;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* ATI CCTV logo sizing consistency */
+.nav-logo img,
+.why-badge-card img,
+.cta-logo img,
+.footer-logo img {
+  object-fit: contain;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .brand-logo-img {
+    height: 44px;
+    max-width: 150px;
+  }
+  .pkg-bar-logo { height: 26px; }
+  .ipcam-tag-logo { height: 20px; }
+}
