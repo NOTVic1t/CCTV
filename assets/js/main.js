@@ -280,3 +280,27 @@
 
   lazyImages.forEach(img => observer.observe(img));
 })();
+
+// ─── PACKAGE TAB FILTER ─────────────────────────
+(function () {
+  const tabs = document.querySelectorAll('.pkg-tab');
+  const cards = document.querySelectorAll('.pkg-card[data-brand]');
+  if (!tabs.length) return;
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      const brand = tab.getAttribute('data-brand');
+
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+
+      cards.forEach(function (card) {
+        if (brand === 'all' || card.getAttribute('data-brand') === brand) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
